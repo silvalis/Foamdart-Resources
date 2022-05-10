@@ -34,7 +34,7 @@ This guide does not cover Arduino IDE setup, basic usage and language. Please go
 
 Any Arduino Nano
 
-![Fritzing pic of an Arduino Nano](/images/arduinonano-fritzing.png)
+![Fritzing pic of an Arduino Nano](/images/ArduinoNano-Fritzing.png)
 
 Amazon
 (https://www.amazon.com/Arduino-A000005-ARDUINO-Nano/dp/B0097AU5OU)
@@ -53,14 +53,14 @@ Arduino Nanos are 7-21VDC.
 
 Attach a power supply (eg batteries) to your Nano Vin and GND pins
 
-!(/images/battery.png)
+!(/images/Battery.png)
 
 ### Input
 
 Since we're programming nerf blasters, lets start with your basic requirement - an input switch that will cause the blaster to do something.
 Your basic input circuit looks like this
 
-![Pushbutton](/images/pushbutton.png)
+![Pushbutton](/images/Pushbutton.png)
 
 Note the following
 - One side of the button is connected to D2
@@ -142,7 +142,7 @@ You need:
 
 Using the same inputs on the Arduino...
 
-![mosfet wiring](/images/mosfetcircuit.png)
+![mosfet wiring](/images/Mosfetcircuit.png)
 
 
 # Blaster Building
