@@ -11,8 +11,9 @@ Arduinos are powerful and easily programmed devices that can enhance your foam d
  - Brushless flywheels
  - Advanced fire control 
  
+# I don't want to read this. Just show me the stuff
 
- 
+ [Back to pgraomming](ArduinoProgramming.md#Full Code)
  
  
 # Start here if you don't know what an Arduino is
