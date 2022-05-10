@@ -1,4 +1,4 @@
-# Basic Arduino Tutorial - by Blaster Configuration
+# Basic Arduino Tutorial
  
 Arduinos are powerful and easily programmed devices that can enhance your foam dart blaster.
 
@@ -47,6 +47,19 @@ Australia
 
 This is a basic button press LED circuit
 
+### What are all these pins for?
+
+An arduino has a number of pins connected to the MCU for a variety of uses. What you need to know are:
+
+![Fritzing pic of an Arduino Nano](/images/ArduinoNano-Fritzing.png)
+
+- Vin - Main power supply to the Arduino.
+- GND - Ground
+- 5V - 5VDC output supply. This can supply a max of about 500mA so do not attach motors and so on to it.
+- D2 to D13 - Digital i/o pins. Configurable as an input or output. PWM on some pins. Use for on or off things like buttons, motors, etc
+- A1 to A7 - Analogue i/o pins. Configurable as input or output. Use for things like battery monitors, adjustment potentiometers, etc
+- The rest are not covered here
+
 ### Supply power to your Arduino
 
 Arduino Nanos are 7-21VDC. 
@@ -54,6 +67,7 @@ Arduino Nanos are 7-21VDC.
 Attach a power supply (eg batteries) to your Nano Vin and GND pins
 
 !(/images/Battery.png)
+
 
 ### Input
 
@@ -68,33 +82,33 @@ Note the following
 
 This means that when you press the button, D2 is connected to GND and reports back as LOW. If it is not pushed, it reports HIGH
 
+>*** SIDEBAR: Button Addressing ***
+>There are several methods of addressing Arduino pins from code, but the short version is:
+>Digital D2-D13:  D2 = 2, D3 = 3, etc
+>Analog A0-A7:    A0 = A0, A1 = A1, etc
+
+
+There are two INPUT definitions - INPUT and INPUT_PULLUP. The short version for our purposes are, INPUT_PULLUP works better in high EMF noise environments. 
+
 You can add this to your code with the following
 
 ```
-pinMode(9, INPUT);
+pinMode(9, INPUT_PULLUP);
 if (digitalRead(9) == LOW)
 {
 	// Do something
 }
 ```
 
-### Pullups
 
-Electric motors, such as those used in Nerf flywheelers produce a fair bit of electromagnetic frequency noise (EMF). This, if close enough to your input wires, can induce current on them and mess with your inputs. Arduinos provide an internal "Pullup" resistor on its digital inputs which can block this from happening. Define your pin with INPUT_PULLUP instead.
-
-`pinMode(9, INPUT_PULLUP);`
-
-If its an extremely noisy environment, use an external resistor. These fare better when the switch is in close proximity to DC motors. 
-
-10Kohm is a good resistance to start with. Noisier environments will require lower values.
-
-![External pulluup](/images/pullupresistor.png)
 
 
 ### Output
 
 Define your output like this
 `pinMode(3, OUTPUT);`
+
+![LED](images/led.png)
 
 If you set your output HIGH, it turns ON. LOW turns OFF.
 Write to your output like this
@@ -143,6 +157,61 @@ You need:
 Using the same inputs on the Arduino...
 
 ![mosfet wiring](/images/Mosfetcircuit.png)
+
+You can also use premade modules, especially for lower power requirements. For example, for the pusher electronics, I like the Freetronics NDRIVE N-MOSFET module. This has a 20A max rating and is relatively compact, so easy to drop in.
+
+(https://www.freetronics.com.au/products/n-mosfet-driver-output-module)
+
+Program code for this is the same as for the LED circuit. All we have done is replaced the LED.
+
+
+### Adding a pusher driver and a rev trigger
+
+To add an automatic pusher to the circuit, I've simply duplicated the power transistor circuit and added another motor. Keep in mind that this will get you automatic only. This has been connected to an available digital pin, D4.
+
+I have also added another button to D8. This could be used to trigger the pusher circuit.
+
+![full circuit](/images/fullcircuit.png)
+
+```
+pinMode(9, INPUT_PULLUP);		// Input button
+pinMode(8,
+pinMode(3, OUTPUT);				// Output LED
+if (digitalRead(9) == LOW)		// If button has been pressed
+{
+	digitalWrite(3,HIGH);		// Turn ON
+}
+else							// If button is not pressed
+{
+	digitalWrite(3,LOW);		// Turn OFF
+}
+```
+
+
+## Troubleshooting
+
+### My buttons aren't working
+
+Electric motors, such as those used in Nerf flywheelers produce a fair bit of electromagnetic frequency noise (EMF). This, if close enough to your input wires, can induce current on them and mess with your input buttons and so on. Arduinos provide an internal "Pullup" resistor on its digital inputs which can block this from happening. Define your pin with INPUT_PULLUP instead.
+
+`pinMode(9, INPUT_PULLUP);`
+
+If its an extremely noisy environment, use an external resistor. These fare better when the switch is in close proximity to DC motors. 
+
+10Kohm is a good resistance to start with. Noisier environments will require lower values.
+
+![External pulluup](/images/pullupresistor.png)
+
+
+
+## Basics covered
+
+
+
+
+
+
+
 
 
 # Blaster Building
