@@ -1,4 +1,8 @@
+# Page links
 
+[Introduction](Arduino.md)
+
+[Programming](ArduinoProgramming.md)
 
 # Blaster Building
 
@@ -267,4 +271,4 @@ Power supply choice depends on your application.
 
 [Return to the start](Arduino.md)
 
-[Back to pgraomming](ArduinoProgramming.md)
+[Back to Programming](ArduinoProgramming.md)
