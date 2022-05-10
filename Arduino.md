@@ -169,7 +169,7 @@ Program code for this is the same as for the LED circuit. All we have done is re
 
 ### Adding a pusher driver and a rev trigger
 
-To add an automatic pusher to the circuit, I've simply duplicated the power transistor circuit and added another motor. Keep in mind that this will get you automatic only. This has been connected to an available digital pin, D4.
+To add an automatic pusher to the circuit, I've simply duplicated the power transistor circuit and added a solenoid. This has been connected to an available digital pin, D4. The solenoid should be powered on to push forward, then turn off to retract.
 
 I have also added another button to D8. This could be used to trigger the pusher circuit.
 
@@ -190,12 +190,15 @@ if (digitalRead(9) == LOW)		// If button has been pressed
 	if (digitalRead(8) == LOW)		// If the rev is pressed, then we can press pusher)
 	{
 		digitalWrite(4,HIGH);		// Start pusher
+		delay (100);					// energise for 100ms
+		digitalWrite(4,LOW);		// Turn OFF pusher
+		delay (100);					// denergise for 100ms
 	}
 }
-else					// If REV button is not pressed, stop both
+else					// If REV button is not pressed, stop 
 {
-	digitalWrite(4,LOW);		// Turn OFF pusher
 	digitalWrite(3,LOW);		// Turn OFF rev
+
 }
 ```
 

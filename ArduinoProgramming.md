@@ -1,41 +1,63 @@
 
 # Programming an arduino properly
 
-Arduinos are constantly looping through its code and operate on a state machine behavioural system. Code examples given previously were simplied for the tutorial
+There are a number of things you need to do to run your arduino more efficiently
 
-A state machine is a behavioural machine that has a finite number of states and a given input into the machine performs a transition and produces an output. A simple way of explaining this is:
+[Return to the start](Arduino.md)
+[The next section covers hardware options when building your blaster](BlasterTypes.md)
 
-![finite state machine](/images/fsm.png)
-
-When you press the button, the flywheel motors start. When you release it, the motors stop.
-
-###So whats the point of this?
-
-You need to organise your code properly.
-
-Arduino code contains 4 main areas:
-
-***Declarations***
-
-Where you declare your pins, variables, constants, etc
-
-***setup()***
-
-Where you place run-once-on-startup commands, such as initial values
-
-***loop()***
-
-Code that is executed every cycle
-
-***user functions*** 
-
-User declared functions
-
-## Polling buttons
+## Better Button Handling
 
 Buttons should be polled once per cycle, to ensure that the inputs are checked on a regular basis rather than read adhoc. This is increasingly more important as your program grows larger. 
 
-Create a function 
+Poll the status of the buttons once per cycle and place it in your loop. 
+
+```
+#define PIN_TRIGGER_FIRE 8
+#define PIN_TRIGGER_REV 9
+
+byte FireButtonState = HIGH;
+byte RevButtonState = HIGH;
+
+
+void loop()
+{
+	FireButtonState = digitalRead(PIN_TRIGGER_FIRE);
+	RevButtonState = digitalRead(PIN_TRIGGER_FIRE);
+}
+
+
+```
+
+Question: What is the issue with this code?
+
+Answer: It doesn't detect fleeting button presses
+
+This can be solved using Interrupts.
+This is out of scope of this tutorial (for the moment)
+
+Button debouncing is also out of scope of this tutorial. 
+
+## Delays to ensure things happen
+
+In the case of a solenoid, it's similar to a binary switch - ON is foward, OFF is retracted. This means you need to time how long its on and off so that you don't:
+1) unnecessarily hold the solenoid ON (uses battery power)
+2) shortstroke the solenoid. Energise or deenergise before it has reached fully extended or fully retracted
+
+`delay(x)`
+where x is the time in milliseconds.
+
+You can do something like this
+
+```		
+digitalWrite(4,HIGH);		// Start pusher
+delay (100);					// energise for 100ms
+digitalWrite(3,LOW);		// Turn OFF pusher
+delay (100);					// denergise for 100ms
+```
+
+
+
 
 ## Full Code
 
@@ -70,11 +92,13 @@ void loop()
 		if (digitalRead(8) == LOW)		// If the rev is pressed, then we can press pusher)
 		{
 			digitalWrite(4,HIGH);		// Start pusher
+			delay (100);					// energise for 100ms
+			digitalWrite(3,LOW);		// Turn OFF pusher
+			delay (100);					// denergise for 100ms
 		}
 	}
 	else					// If REV button is not pressed, stop both
 	{
-		digitalWrite(4,LOW);		// Turn OFF pusher
 		digitalWrite(3,LOW);		// Turn OFF rev
 	}
 
@@ -86,5 +110,5 @@ void loop()
 
 
 ## Programming covered
-
-The next section covers hardware options when building your blaster
+[Return to the start](Arduino.md)
+[The next section covers hardware options when building your blaster](BlasterTypes.md)
