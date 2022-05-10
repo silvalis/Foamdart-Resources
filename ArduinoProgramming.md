@@ -1,4 +1,10 @@
 
+# Page links
+ 
+[Introduction](Arduino.md)
+
+[Hardware Configuration](BlasterTypes.md)
+
 # Programming an arduino properly
 
 There are a number of things you need to do to run your arduino more efficiently
