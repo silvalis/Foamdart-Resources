@@ -56,3 +56,10 @@ This example has 2 switches
 ### Others
 See airzonesama's resources
 
+## Step 3
+
+Write a program
+
+1) Define your switch inputs & pins. What do they do?
+2) Define your outputs. What drives what?
+3) Link your input to your output. Which switch will trigger which output?
