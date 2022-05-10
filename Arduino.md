@@ -10,7 +10,142 @@ Arduinos are powerful and easily programmed devices that can enhance your foam d
  - Select fire
  - Brushless flywheels
  - Advanced fire control 
+ 
 
+ 
+ 
+ 
+# Start here if you don't know what an Arduino is
+
+## Arduino
+
+It's a programmable microcontroller (MCU)
+
+You will require both hardware and software
+
+**Software**
+
+(https://www.arduino.cc/)
+
+This guide does not cover Arduino IDE setup, basic usage and language. Please go here for tutorials
+(https://www.arduino.cc/en/Guide)
+
+**Hardware**
+
+Any Arduino Nano
+
+![Fritzing pic of an Arduino Nano](/images/arduinonano-fritzing.png)
+
+Amazon
+(https://www.amazon.com/Arduino-A000005-ARDUINO-Nano/dp/B0097AU5OU)
+
+I like these low cost clones
+Australia
+(https://www.amazon.com.au/Arduino-Elegoo-ATmega328P-Without-Compatible/dp/B077272KMZ/)
+
+## Basic Circuits
+
+This is a basic button press LED circuit
+
+### Supply power to your Arduino
+
+Arduino Nanos are 7-21VDC. 
+
+Attach a power supply (eg batteries) to your Nano Vin and GND pins
+
+(/images/battery.png)
+
+### Input
+
+Since we're programming nerf blasters, lets start with your basic requirement - an input switch that will cause the blaster to do something.
+Your basic input circuit looks like this
+
+![Pushbutton](/images/pushbutton.png)
+
+Note the following
+- One side of the button is connected to D2
+- The other side is connected to GND
+
+This means that when you press the button, D2 is connected to GND and reports back as LOW. If it is not pushed, it reports HIGH
+
+You can add this to your code with the following
+
+```
+pinMode(9, INPUT);
+if (digitalRead(9) == LOW)
+{
+	// Do something
+}
+```
+
+### Pullups
+
+Electric motors, such as those used in Nerf flywheelers produce a fair bit of electromagnetic frequency noise (EMF). This, if close enough to your input wires, can induce current on them and mess with your inputs. Arduinos provide an internal "Pullup" resistor on its digital inputs which can block this from happening. Define your pin with INPUT_PULLUP instead.
+
+`pinMode(9, INPUT_PULLUP);`
+
+If its an extremely noisy environment, use an external resistor. These fare better when the switch is in close proximity to DC motors. 
+
+10Kohm is a good resistance to start with. Noisier environments will require lower values.
+
+![External pulluup](/images/pullupresistor.png)
+
+
+### Output
+
+Define your output like this
+`pinMode(3, OUTPUT);`
+
+If you set your output HIGH, it turns ON. LOW turns OFF.
+Write to your output like this
+`digitalWrite(3,HIGH);`
+
+
+### Putting it together
+
+Put the two together, and you get an LED turning on when the button is pressed
+
+![circuit](/images/puttingittogether.png)
+
+```
+pinMode(9, INPUT_PULLUP);		// Input button
+pinMode(3, OUTPUT);				// Output LED
+if (digitalRead(9) == LOW)		// If button has been pressed
+{
+	digitalWrite(3,HIGH);		// Turn ON
+}
+else							// If button is not pressed
+{
+	digitalWrite(3,LOW);		// Turn OFF
+}
+```
+
+### How does this relate to my flywheeler? I don't have LEDs!!
+
+Swap out the LED with a circuit to drive the motors!
+
+HOWEVER
+
+The Arduino does not have the output voltage or current to drive DC motors. You need to use a power transistor circuit.
+
+### Power MOSFET circuit
+
+Go here for a complete guide on MOSFETs
+(https://www.reddit.com/r/Nerf/comments/6ufmm8/the_complete_nerf_blaster_mosfet_wiring_tutorial/)
+
+A transistor is essentially an electronically controlled switch - send a signal on the control pin to switch it ON and OFF.
+
+You need:
+- MOSFET (eg IRLB3034PBF)
+- 10kohm Resistor
+- Flyback Diode
+
+Using the same inputs on the Arduino...
+
+![mosfet wiring](/images/mosfetcircuit.png)
+
+
+# Blaster Building
 
 ## Required Hardware
 1. Arduino
@@ -26,7 +161,21 @@ Arduinos are powerful and easily programmed devices that can enhance your foam d
 
 ## Flywheel Type: Brushed
 
+This section covers control schemes and programming of your 
+
+**Brushed Resources**
+
+/r/Nerf MOSFET tutorial
+(https://www.reddit.com/r/Nerf/comments/6ufmm8/the_complete_nerf_blaster_mosfet_wiring_tutorial/?utm_medium=android_app&utm_source=share)
+
+
 ## Flywheel Type: Brushless
+
+**Brushless Resources**
+
+Ultrasonic (https://www.thingiverse.com/thing:4266387)
+Making Stuff Awesome group (https://www.facebook.com/groups/MakingStuffAwesome/)
+
 
 ## Pusher Type: Solenoid
 Example: FTW Hyperdrive
@@ -50,11 +199,13 @@ Example: FTW Hyperdrive
 Solenoids are an extremely easy way of gaining electronic fire control. Without an MCU, they can simply be wired in series with a battery and switch for a nice tactile clunk when firing. Under MCU control, you can expect to gain around 10dps on 3S and up to 18 on 4S. They are very easy to program for and only need a basic power transistor circuit to operate. 
 
 **Solenoid Recommendation**
+
 My preference for electronic solenoids are the FTW Hyperdrive.
 https://flywheeltheworld.com/shop/ftw-hyperdrive-solenoid/
 These are a great solenoid, capable of both 3S and 4S and used to come with an extra return spring for higher rof. 
 
 **Required Circuitry**
+
 A standard power MOSFET is suitable - most solenoids of this size only require 8-12A at our 3S/4S voltages. There are several options here.
 
 1. Narfduino
@@ -68,6 +219,7 @@ There are plenty of premade modules available. One of my favourite is the Freetr
 You can re-use the same MOSFET setup used in most high powered flywheeler circuits. These are often available as kits from foam dart shops, [such as this one from Blastertech](https://www.blastertech.com.au/Mosfet_High_Current_Kit/p2928293_18274115.aspx)
 
 **Programming**
+
 Solenoids are easy to program for - to extend the pusher, you energise the circuit. To retract the pusher, you simply remove power. In the arduino environment, this is simply turning the connected pin ON and OFF and also means in order to achieve SEMI/BURST/AUTO, it's as simple as counting the number of darts you want to shoot. 
 I suggest a code block similar to this
 ```
@@ -138,6 +290,7 @@ The Narfduino has a major advantage here compared to the bare Nano - it has a bu
 
 
 **Programming**
+
 In general, motorised pushers are harder to program for if you do not add a multitude of pusher sensors. Burst is difficult to control and both semi/auto will be based on timing (eg time taken to push 1 dart). 
 
 I suggest a code block similar to this
@@ -172,6 +325,45 @@ Not covered. These are almost all mechanical systems.
 ## Fire Control: Electronic Semi/Auto/Other
 
 
+## HPA
+
+**Solenoid**
+
+For Spexbz and Supercore builds that use a QEV, you need a 3 way 2 position solenoid. 
+
+There are two solenoid choices that come in a reasonable size
+
+- Airtac 3V110-06, and clones
+- MAC 3 Port Solenoid 35A-ACA-DDBA-1BA
+
+Ensure you buy the 12V version so you can use a compact 3S lipo.
+
+**Programming**
+
+HPA Solenoid programming is much like a large solenoid pusher. You will be limited by your fittings diameter / How quickly does the spexbq/supercore recharge. You can install bump switches to detect pusher position, electronic pressure sensors to report back to the MCU, or just trial and error to determine timing.
+
+
+I suggest a code block similar to this
+```
+// Pseudocode for a Semi/auto pusher motor
+semifiretime = 50ms // Arbitrary number plucked out of nowhere to describe how long it will take to start 1 shot
+
+IF (SEMI) THEN
+  Pusher ON
+  delay semifiretime
+  Pusher OFF					// then attempt to brake the motor
+
+ELSE                            // AUTO 
+  WHILE Trigger == ON
+    Pusher ON
+  ENDWHILE
+  Pusher OFF
+
+```
+This can obviously be optimised.
+
+
+
 
 ## General Considerations
 
@@ -179,19 +371,23 @@ Not covered. These are almost all mechanical systems.
 I recommend 2 boards
 
 1. Arduino Nano (and clone devices)
+
 **Pros**
  - Widely available
  - Cheap
  - 7-21VDC input (eg, 2S-5S without a regulator)
  - Common Atmega 328p MCU, plenty of libraries, tutorials, support
+ 
 **Cons**
  - Limited GND and 5VDC pins - DIY your own
  
 2. [Airzone Narfduino](https://blastersbyairzone.com/product/narfduino/)
+
 **Pros**
  - Similar to the Nano
  - Built in Half-H Bridge
  - A number of GND and 5VDC pins available on the board
+ 
  **Cons**
  - Costs more than a nano
  
@@ -204,8 +400,10 @@ I recommend 2 boards
 Power supply choice depends on your application.
 
 **Brushed Flywheel**
+
 2S or 3S lipo, direct battery connection
 
 **Brushless Flywheel**
+
 2S-5S fine, 6S will require a regulator for the arduino.
 
