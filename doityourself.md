@@ -17,22 +17,22 @@ Choose your options
 
 1) Brushed 		>> MOSFET
 2) Brushless 	>> ESCs
-3) HPA 		>> Nil
+3) HPA 			>> Nil
 
 
 ### Pusher
 
 1) Mechanical	 >> This is an arduino tutorial
-2) Motorised Auto Only 
-3) Motorised w/ Brake
-4) Solenoid
+2) Motorised Auto Only 		>> Add a MOSFET
+3) Motorised w/ Brake		>> Add a Half-H
+4) Solenoid					>> Add a MOSFET
 
 
 ### Switches
 
-1) 1-Trigger (Combined)
-2) 2-Trigger (Trigger/Rev)
-3) Select Fire (+1 switch for each mode)
+1) Trigger (Combined)				>> +1 Switch
+2) Rev Trigger (Trigger/Rev)		>> +1 Switch
+3) Select Fire (+1 switch for each mode) >> +1 Switch per mode
 
 
 ### Others
@@ -43,6 +43,16 @@ Choose your options
 
 ## Step 2
 
+### Drive
+
 
 ### Switches
-For every switch
+Count how many switches you need and directly attach them to any available digital pin.
+
+This example has 2 switches
+(images/2button.png)
+
+
+### Others
+See airzonesama's resources
+
