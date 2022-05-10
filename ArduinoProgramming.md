@@ -51,9 +51,9 @@ You can do something like this
 
 ```		
 digitalWrite(4,HIGH);		// Start pusher
-delay (100);					// energise for 100ms
+delay (100);			// energise for 100ms
 digitalWrite(3,LOW);		// Turn OFF pusher
-delay (100);					// denergise for 100ms
+delay (100);			// denergise for 100ms
 ```
 
 
@@ -77,9 +77,9 @@ Using the previous example with the same circuit
 void setup()
 {
 	pinMode(PIN_TRIGGER_REV, INPUT_PULLUP);		// REV button
-	pinMode(PIN_TRIGGER_FIRE, INPUT_PULLUP);		// PUSH button
+	pinMode(PIN_TRIGGER_FIRE, INPUT_PULLUP);	// PUSH button
 	pinMode(PIN_MOTOR_REV, OUTPUT);			// Output REV wheels
-	pinMode(PIN_MOTOR_PUSH, OUTPUT);			// Output PUSH motor
+	pinMode(PIN_MOTOR_PUSH, OUTPUT);		// Output PUSH motor
 
 }
 
@@ -89,12 +89,12 @@ void loop()
 	if (digitalRead(9) == LOW)		// If button has been pressed
 	{
 		digitalWrite(3,HIGH);		// Turn ON
-		if (digitalRead(8) == LOW)		// If the rev is pressed, then we can press pusher)
+		if (digitalRead(8) == LOW)	// If the rev is pressed, then we can press pusher)
 		{
-			digitalWrite(4,HIGH);		// Start pusher
-			delay (100);					// energise for 100ms
-			digitalWrite(3,LOW);		// Turn OFF pusher
-			delay (100);					// denergise for 100ms
+			digitalWrite(4,HIGH);	// Start pusher
+			delay (100);		// energise for 100ms
+			digitalWrite(3,LOW);	// Turn OFF pusher
+			delay (100);		// denergise for 100ms
 		}
 	}
 	else					// If REV button is not pressed, stop both
@@ -111,4 +111,5 @@ void loop()
 
 ## Programming covered
 [Return to the start](Arduino.md)
+
 [The next section covers hardware options when building your blaster](BlasterTypes.md)
