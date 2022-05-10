@@ -115,7 +115,10 @@ void loop()
 
 
 
-## Programming covered
+
+
+
+# Programming covered
 [Return to the start](Arduino.md)
 
 [The next section covers hardware options when building your blaster](BlasterTypes.md)

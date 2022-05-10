@@ -15,6 +15,8 @@ Arduinos are powerful and easily programmed devices that can enhance your foam d
 
  [Full Code](ArduinoProgramming.md#full-code)
  
+ [I read this and I don't get it. What should I do][doityourself.md]
+ 
  Sections here
  
 [Programming](ArduinoProgramming.md)
