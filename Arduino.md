@@ -218,6 +218,6 @@ If its an extremely noisy environment, use an external resistor. These fare bett
 
 ## Basics covered
 
-[The next section covers putting code together] (ArduinoProgramming.md)
+[The next section covers putting code together](ArduinoProgramming.md)
 
 [Or skip to blaster configuration](BlasterTypes.md)
