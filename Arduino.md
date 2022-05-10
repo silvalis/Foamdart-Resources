@@ -82,9 +82,11 @@ Note the following
 
 This means that when you press the button, D2 is connected to GND and reports back as LOW. If it is not pushed, it reports HIGH
 
->*** SIDEBAR: Button Addressing ***
+*** SIDEBAR: Button Addressing ***
 >There are several methods of addressing Arduino pins from code, but the short version is:
+>
 >Digital D2-D13:  D2 = 2, D3 = 3, etc
+>
 >Analog A0-A7:    A0 = A0, A1 = A1, etc
 
 
