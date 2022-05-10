@@ -53,7 +53,7 @@ Arduino Nanos are 7-21VDC.
 
 Attach a power supply (eg batteries) to your Nano Vin and GND pins
 
-(/images/battery.png)
+!(/images/battery.png)
 
 ### Input
 
