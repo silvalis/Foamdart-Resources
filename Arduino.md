@@ -125,12 +125,12 @@ Put the two together, and you get an LED turning on when the button is pressed
 
 ```
 pinMode(9, INPUT_PULLUP);		// Input button
-pinMode(3, OUTPUT);				// Output LED
+pinMode(3, OUTPUT);			// Output LED
 if (digitalRead(9) == LOW)		// If button has been pressed
 {
 	digitalWrite(3,HIGH);		// Turn ON
 }
-else							// If button is not pressed
+else					// If button is not pressed
 {
 	digitalWrite(3,LOW);		// Turn OFF
 }
@@ -187,12 +187,12 @@ pinMode(4, OUTPUT);			// Output PUSH motor
 if (digitalRead(9) == LOW)		// If button has been pressed
 {
 	digitalWrite(3,HIGH);		// Turn ON
-	if (digitalRead(8) == LOW)		// If the rev is pressed, then we can press pusher)
+	if (digitalRead(8) == LOW)	// If the rev is pressed, then we can press pusher)
 	{
-		digitalWrite(4,HIGH);		// Start pusher
-		delay (100);					// energise for 100ms
-		digitalWrite(4,LOW);		// Turn OFF pusher
-		delay (100);					// denergise for 100ms
+		digitalWrite(4,HIGH);	// Start pusher
+		delay (100);		// energise for 100ms
+		digitalWrite(4,LOW);	// Turn OFF pusher
+		delay (100);		// denergise for 100ms
 	}
 }
 else					// If REV button is not pressed, stop 
