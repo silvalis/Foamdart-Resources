@@ -45,6 +45,22 @@ Remove battery lead
 2- Wiring Diagram goes here
 
 
+ESC Servo plugs
+These are RC spec - so take a pwm input 1000-2000us (or as programmed) where 1500us is neutral. We run these as single directional, so 1000 is off, 2000 is fully on.
+
+The servo plug has 3 pins - PWM, +Volts, Gnd. These are commonly found as White/Red/Black (Futaba), or Yellow/Red/Brown (JR), or with varying servo wire colours. Ensure you identify your ground pin. Some plugs are tabbed with the tab on the PWM pin side (Futaba), but the majority are not.
+
+In a normal RC system, the battery is typically connected to the ESC, which has an onboard Battery Eliminator Circuit (BEC) and supplies other peripherals with 5-7.4VDC depending on the BEC. Ground is typically common through the ESC - so Negative battery input is common with the servo plug GND and any other GND pads on the ESC.  
+
+Do not connect the volts+ wire to the USB Programmer!
+
+For our purposes, you can use this gnd wire for other electronics, or run a separate ground wire out of your plug or other junction. 
+
+DO NOT CUT OFF THE GND WIRE - YOU NEED IT FOR USB PROGRAMMING
+
+
+
+
 3- Arduino program goes here
 
 
