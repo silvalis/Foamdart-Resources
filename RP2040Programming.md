@@ -189,7 +189,13 @@ ESCs will typically need 14AWG to 18AWG, depending on motor requirements.
 
 # Switch wiring
 
-The simplest method is to wire one terminal of the switch to the GPIO pin and the other to Ground.
+The simplest method is to wire one terminal of the switch to the GPIO pin and the other to Ground. 
+
+This means when the switch is 
+
+-Closed/ground = LOW (0)
+-Open/floating = HIGH (1)
+
 
 NC or NO? It really doesn't matter.
 
