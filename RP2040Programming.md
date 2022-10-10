@@ -58,7 +58,7 @@ OUTPUT: Pusher MOSFET
 
 4 i/o required
 
-The DFRobot Beetle has 8 GPIO ports. 
+The DFRobot Beetle (8 GPIO), Seeed Xiao RP2040 (10 GPIO), Adafruit QT PY RP2040 (10 GPIO)
  
 Example 2: Brushless and Select Fire Solenoid Pusher
 
@@ -71,7 +71,7 @@ OUTPUT: Pusher MOSFET
 
 6 i/o required
 
-The DFRobot Beetle has 8 GPIO ports. 
+The DFRobot Beetle (8 GPIO), Seeed Xiao RP2040 (10 GPIO), Adafruit QT PY RP2040 (10 GPIO)
 
 
 
@@ -90,7 +90,7 @@ OUTPUT: DC Motor Driver PH
 
 10 i/o required
 
-The Seeed Xiao RP2040 has 10 GPIO ports.
+The Seeed Xiao RP2040 (10 GPIO), Adafruit QT PY RP2040 (10 GPIO)
  
  ---------------
  
@@ -100,7 +100,10 @@ RP2040
 
 <10 GPIO
 
-DFRobot Beetle Mini 8GPIO 
+DFRobot Beetle RP2040 Mini 8GPIO 
+https://www.dfrobot.com/product-2615.html
+
+Note: The Beetle RP2040 has 8 GPIO while the Seeed Xiao and Adafruit QT PY are better specced with 10. The Beetle is larger than the other two. If you are new to soldering PCBs, the Beetle has large easy to solder pads which is useful.
 
 Seeed Xiao RP2040 $6
 
