@@ -86,7 +86,7 @@ Your basic input circuit looks like this
 ![Pushbutton](/images/Pushbutton.png)
 
 Note the following
-- One side of the button is connected to D2
+- One side of the button is connected to D9
 - The other side is connected to GND
 
 This means that when you press the button, D2 is connected to GND and reports back as LOW. If it is not pushed, it reports HIGH
